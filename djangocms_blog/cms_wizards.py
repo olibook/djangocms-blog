@@ -24,6 +24,7 @@ class PostWizardForm(TranslatableModelForm):
             kwargs['initial'] = {}
         kwargs['initial']['app_config'] = self.default_appconfig
         if 'data' in kwargs and kwargs['data'] is not None:
+            kwargs['data'] = kwargs['data'].copy()
             kwargs['data']['1-app_config'] = self.default_appconfig
         super(PostWizardForm, self).__init__(*args, **kwargs)
         self.fields['app_config'].widget = forms.Select(
